@@ -47,6 +47,23 @@ class ProductList extends React.Component {
     ]
   }
 
+  handleProductUpVote = (id) => { 
+    let products = this.state.products.map(product => {
+      if (product.id === id) {
+        return Object.assign({}, product, {
+          votes: product.votes + 1
+        });
+      } else {
+        return product
+      }
+    });
+
+    this.setState({
+      products: products  
+    });
+  }
+
+
   render() { 
     console.log(this.state.products)
 
@@ -63,6 +80,7 @@ class ProductList extends React.Component {
         votes={product.votes}
         submitterAvatarUrl={product.submitterAvatarUrl}
         productImageUrl={product.productImageUrl}
+        upVote={this.handleProductUpVote}
       />
     ))
 
