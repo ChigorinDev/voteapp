@@ -5,7 +5,7 @@ class ProductList extends React.Component {
   generateVoteCount = () => {
     return Math.floor((Math.random() * 50) + 15);
   }
-  
+
   state = {
     products: [
       {
@@ -49,9 +49,26 @@ class ProductList extends React.Component {
 
   render() { 
     console.log(this.state.products)
+
+    const products = this.state.products.sort((a, b) => (
+      b.votes - a.votes
+    ));
+    const mappedProducts = products.map(product => ( 
+      <Product
+        key={'key-' + product.id}
+        id={product.id}
+        title={product.title}
+        description={product.description}
+        url={product.url}
+        votes={product.votes}
+        submitterAvatarUrl={product.submitterAvatarUrl}
+        productImageUrl={product.productImageUrl}
+      />
+    ))
+
     return (
       <div className='ui unstackable items'>
-        <Product />
+        {mappedProducts}
       </div>
     );
   }
