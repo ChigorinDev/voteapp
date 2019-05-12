@@ -1,11 +1,16 @@
 import React from 'react';
+import ProductList from './components/ProductList';
 
-function App() {
-  return (
-    <div className="App ui container">
-      test
+
+
+class App extends React.Component { 
+  render() { 
+    return (
+    <div className="App container">
+      <ProductList />
     </div>
-  );
+    );
+  }
 }
 
 export default App;
